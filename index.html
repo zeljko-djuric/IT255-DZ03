@@ -1,0 +1,64 @@
+<html>
+    <head>
+      <title>DZ 03</title>
+      <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+      <link rel="stylesheet" href="./style.css">
+    </head>
+    <body>
+
+        <!-- Form -->
+            <form id="inputForm">
+                    <div class="form-group">
+                            <label for="exampleInputName">First Name:</label>
+                            <input type="text" class="form-control" id="firstName" aria-describedby="nameHelp" placeholder="Enter Your First Name">
+                          </div>
+                    <div class="form-group">
+                    <div class="form-group">
+                            <label for="exampleInputLastName">Last Name:</label>
+                            <input type="text" class="form-control" id="lastName" aria-describedby="lastNameHelp" placeholder="Enter Your Last Name">
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Email:</label>
+                      <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter Your Email">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+            
+        <!-- Table -->
+        <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">First Name</th>
+                    <th scope="col">Last Name</th>
+                    <th scope="col">Email</th>
+                  </tr>
+                </thead>
+                <tbody id="data">
+                </tbody>
+              </table>
+
+
+        <!-- JavaScript -->
+              <script>
+                    document.getElementById('inputForm').onsubmit = function(e) {submit(e)};
+                    const submit = (e) => { 
+                        e.preventDefault();
+                        let data = prepareData();
+                        let tbody = document.getElementById('data');
+                        let tr = '<tr><td>' + data.firstName + '</td>' + '<td>' + data.lastName + '</td>' + '<td>' + data.email + '</td></tr>';
+                        tbody.innerHTML = tbody.innerHTML + tr;
+                    }
+
+                    const prepareData = () => {
+                        let elements = document.getElementById("inputForm").elements;
+                        let arr = {}
+                        for(i = 0; i < elements.length; i++) {
+                            if(elements[i].id) {
+                                arr[elements[i].id] = elements[i].value;
+                            }
+                        }
+                        return arr;
+                    }
+                    </script>
+    </body>
+</html>
